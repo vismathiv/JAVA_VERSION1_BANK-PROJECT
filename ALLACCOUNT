@@ -1,0 +1,118 @@
+package MAINPACK;
+
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import java.awt.Font;
+import javax.swing.JTable;
+import javax.swing.border.LineBorder;
+
+import net.proteanit.sql.DbUtils;
+
+import java.awt.Color;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.sql.ResultSet;
+import java.awt.event.ActionEvent;
+import javax.swing.ImageIcon;
+
+public class AllAccount {
+
+	private JFrame frame;
+	private JTable table;
+
+	/**
+	 * Launch the application.
+	 */
+	
+
+	/**
+	 * Create the application.
+	 */
+	public AllAccount() {
+		initialize();
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		frame = new JFrame();
+		frame.setBounds(100, 100, 700, 550);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(null);
+		
+		JLabel lblNewLabel = new JLabel("ALL ACCOUNT DETAILS");
+		lblNewLabel.setForeground(new Color(204, 51, 51));
+		lblNewLabel.setFont(new Font("Vineta BT", Font.PLAIN, 21));
+		lblNewLabel.setBounds(62, 20, 449, 56);
+		frame.getContentPane().add(lblNewLabel);
+		
+		JLabel lblNewLabel_1 = new JLabel("ACCNO");
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblNewLabel_1.setBounds(37, 120, 112, 22);
+		frame.getContentPane().add(lblNewLabel_1);
+		
+		JLabel lblNewLabel_1_1 = new JLabel("BR_NAME");
+		lblNewLabel_1_1.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblNewLabel_1_1.setBounds(231, 120, 112, 22);
+		frame.getContentPane().add(lblNewLabel_1_1);
+		
+		JLabel lblNewLabel_1_2 = new JLabel("BALANCE");
+		lblNewLabel_1_2.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblNewLabel_1_2.setBounds(452, 120, 112, 22);
+		frame.getContentPane().add(lblNewLabel_1_2);
+		
+		table = new JTable();
+		table.setForeground(new Color(0, 0, 0));
+		table.setBorder(new LineBorder(new Color(255, 182, 193), 3));
+		table.setBounds(29, 145, 597, 212);
+		frame.getContentPane().add(table);
+		
+		JLabel lblNewLabel_2 = new JLabel("THESE ARE YOUR ABOVE ACCOUNT DETAILS!!!!");
+		lblNewLabel_2.setForeground(new Color(255, 255, 255));
+		lblNewLabel_2.setFont(new Font("Tahoma", Font.ITALIC, 21));
+		lblNewLabel_2.setBounds(62, 391, 530, 44);
+		frame.getContentPane().add(lblNewLabel_2);
+		
+		JButton btnNewButton = new JButton("BACK");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.setVisible(false);
+				new CheckDetails();
+			}
+		});
+		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		btnNewButton.setBounds(48, 461, 85, 30);
+		frame.getContentPane().add(btnNewButton);
+		
+		JLabel lblNewLabel_3 = new JLabel("");
+		lblNewLabel_3.setIcon(new ImageIcon("G:\\pics\\d4.jpg"));
+		lblNewLabel_3.setBounds(0, 0, 686, 513);
+		frame.getContentPane().add(lblNewLabel_3);
+		frame.addWindowListener(new WindowAdapter() {
+			public void windowActivated(WindowEvent e) {
+				try {
+					try {
+						DbInitialize ob=new DbInitialize();
+						ob.useDB();
+						ResultSet rs=ob.readAccount();
+						
+						table.setModel(DbUtils.resultSetToTableModel(rs));
+					}catch(Exception ex) {}
+								
+				}catch(Exception ex) {
+					System.out.println(ex);
+				}
+				
+			}
+			
+			
+		});
+		frame.setVisible(true);
+	}
+		
+}

@@ -1,0 +1,218 @@
+package MAINPACK;
+import MAINPACK.DbInitialize;
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import java.awt.Font;
+import java.awt.Color;
+import javax.swing.JPanel;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.ImageIcon;
+import javax.swing.SwingConstants;
+
+public class AdminResponse {
+
+	private JFrame frame;
+
+	/**
+	 * Launch the application.
+	 */
+	
+	/**
+	 * Create the application.
+	 */
+	public AdminResponse() {
+		initialize();
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		frame = new JFrame();
+		frame.getContentPane().setBackground(new Color(255, 165, 0));
+		frame.setBounds(100, 100, 892, 569);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(null);
+		
+		JLabel lblNewLabel = new JLabel("Welcome Amistrater");
+		lblNewLabel.setForeground(Color.CYAN);
+		lblNewLabel.setFont(new Font("Vineta BT", Font.PLAIN, 28));
+		lblNewLabel.setBounds(192, 10, 542, 81);
+		frame.getContentPane().add(lblNewLabel);
+		
+		JPanel panel = new JPanel();
+		panel.setBackground(new Color(240, 248, 255));
+		panel.setBounds(87, 136, 190, 93);
+		frame.getContentPane().add(panel);
+		panel.setLayout(null);
+		
+		JButton b1 = new JButton("Insert Customer");
+		b1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				
+					frame.setVisible(false);
+					new CustomerRegistration();
+				
+			}
+		});
+		b1.setFont(new Font("Tahoma", Font.BOLD, 12));
+		b1.setBounds(28, 36, 134, 35);
+		panel.add(b1);
+		
+		JLabel lblNewLabel_3 = new JLabel("");
+		lblNewLabel_3.setIcon(new ImageIcon("G:\\pics\\a4.jpeg"));
+		lblNewLabel_3.setBounds(0, 0, 190, 93);
+		panel.add(lblNewLabel_3);
+		
+		JPanel panel_1 = new JPanel();
+		panel_1.setBackground(new Color(255, 248, 220));
+		panel_1.setBounds(310, 136, 190, 93);
+		frame.getContentPane().add(panel_1);
+		panel_1.setLayout(null);
+		
+		JButton b2 = new JButton("fetch");
+		b2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.setVisible(false);
+				new CheckDetails();
+			}
+		});
+		b2.setFont(new Font("Tahoma", Font.BOLD, 12));
+		b2.setBounds(23, 34, 139, 32);
+		panel_1.add(b2);
+		
+		JLabel lblNewLabel_3_3 = new JLabel("");
+		lblNewLabel_3_3.setIcon(new ImageIcon("G:\\pics\\a4.jpeg"));
+		lblNewLabel_3_3.setBounds(0, 0, 190, 93);
+		panel_1.add(lblNewLabel_3_3);
+		
+		JPanel panel_2 = new JPanel();
+		panel_2.setBackground(new Color(245, 245, 220));
+		panel_2.setBounds(87, 279, 190, 93);
+		frame.getContentPane().add(panel_2);
+		panel_2.setLayout(null);
+		
+		JButton b4 = new JButton("delete customer");
+		b4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.setVisible(false);
+				new DeleteCustomer();
+			}
+		});
+		b4.setFont(new Font("Tahoma", Font.BOLD, 12));
+		b4.setBounds(25, 36, 134, 31);
+		panel_2.add(b4);
+		
+		JLabel lblNewLabel_3_1 = new JLabel("");
+		lblNewLabel_3_1.setIcon(new ImageIcon("G:\\pics\\a4.jpeg"));
+		lblNewLabel_3_1.setBounds(0, 0, 190, 93);
+		panel_2.add(lblNewLabel_3_1);
+		
+		JPanel panel_3 = new JPanel();
+		panel_3.setBackground(new Color(255, 204, 255));
+		panel_3.setBounds(310, 279, 190, 93);
+		frame.getContentPane().add(panel_3);
+		panel_3.setLayout(null);
+		
+		JButton btnAddAccount = new JButton("add account details");
+		btnAddAccount.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.setVisible(false);
+				new AddAccount();
+			}
+		});
+		btnAddAccount.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnAddAccount.setBounds(21, 38, 139, 32);
+		panel_3.add(btnAddAccount);
+		
+		JLabel lblNewLabel_3_2 = new JLabel("");
+		lblNewLabel_3_2.setIcon(new ImageIcon("G:\\pics\\a4.jpeg"));
+		lblNewLabel_3_2.setBounds(0, 0, 190, 93);
+		panel_3.add(lblNewLabel_3_2);
+		
+		JPanel panel_4 = new JPanel();
+		panel_4.setBackground(new Color(216, 191, 216));
+		panel_4.setBounds(576, 136, 203, 93);
+		frame.getContentPane().add(panel_4);
+		panel_4.setLayout(null);
+		
+		JButton b3 = new JButton("update");
+		b3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.setVisible(false);
+				new UpdateCustomer();
+			}
+		});
+		b3.setFont(new Font("Tahoma", Font.BOLD, 12));
+		b3.setBounds(33, 33, 138, 34);
+		panel_4.add(b3);
+		
+		JLabel lblNewLabel_3_4 = new JLabel("");
+		lblNewLabel_3_4.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_3_4.setIcon(new ImageIcon("G:\\pics\\a4.jpeg"));
+		lblNewLabel_3_4.setBounds(0, 0, 203, 93);
+		panel_4.add(lblNewLabel_3_4);
+		
+		JPanel panel_4_1 = new JPanel();
+		panel_4_1.setBackground(new Color(152, 251, 152));
+		panel_4_1.setBounds(576, 279, 203, 93);
+		frame.getContentPane().add(panel_4_1);
+		panel_4_1.setLayout(null);
+		
+		JButton btnAddLoan = new JButton("add loan");
+		btnAddLoan.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.setVisible(false);
+				new AddLoan();
+			}
+		});
+		btnAddLoan.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnAddLoan.setBounds(38, 26, 124, 37);
+		panel_4_1.add(btnAddLoan);
+		
+		JLabel lblNewLabel_3_4_1 = new JLabel("");
+		lblNewLabel_3_4_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_3_4_1.setIcon(new ImageIcon("G:\\pics\\a4.jpeg"));
+		lblNewLabel_3_4_1.setBounds(0, 0, 203, 93);
+		panel_4_1.add(lblNewLabel_3_4_1);
+		
+		JPanel panel_4_2 = new JPanel();
+		panel_4_2.setBackground(new Color(0, 255, 127));
+		panel_4_2.setBounds(71, 101, 730, 336);
+		frame.getContentPane().add(panel_4_2);
+		panel_4_2.setLayout(null);
+		
+		JLabel lblNewLabel_2 = new JLabel("");
+		lblNewLabel_2.setIcon(new ImageIcon("G:\\pics\\a4.jpeg"));
+		lblNewLabel_2.setBounds(0, 0, 730, 336);
+		panel_4_2.add(lblNewLabel_2);
+		
+		JButton btnNewButton = new JButton("BACK");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				try {
+					frame.setVisible(false);
+					new login();
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		btnNewButton.setBounds(69, 468, 94, 31);
+		frame.getContentPane().add(btnNewButton);
+		
+		JLabel lblNewLabel_1 = new JLabel("");
+		lblNewLabel_1.setIcon(new ImageIcon("G:\\pics\\a3.jpg"));
+		lblNewLabel_1.setBounds(0, 0, 878, 532);
+		frame.getContentPane().add(lblNewLabel_1);
+		frame.setVisible(true);
+	}
+}

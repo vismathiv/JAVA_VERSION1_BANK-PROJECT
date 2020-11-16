@@ -1,0 +1,142 @@
+package MAINPACK;
+
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JButton;
+import java.awt.Color;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
+import java.awt.Font;
+import javax.swing.JTextField;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.ImageIcon;
+
+public class AddAccount {
+
+	private JFrame frmAdminPanel;
+	private JTextField cn;
+	private JTextField acc;
+	private JTextField bn;
+	private JTextField balance;
+
+	/**
+	 * Launch the application.
+	 */
+	
+
+	/**
+	 * Create the application.
+	 */
+	public AddAccount() {
+		initialize();
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		frmAdminPanel = new JFrame();
+		frmAdminPanel.getContentPane().setBackground(new Color(255, 255, 255));
+		frmAdminPanel.setTitle("Admin Panel");
+		frmAdminPanel.setBounds(100, 100, 470, 430);
+		frmAdminPanel.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		JButton btnNewButton = new JButton("Submit");
+		btnNewButton.setBounds(177, 323, 89, 23);
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				try {
+					DbInitialize ob = new DbInitialize();
+					ob.useDB();
+					int p=ob.insertAccount(Integer.parseInt(acc.getText()),bn.getText(),Double.parseDouble(balance.getText()));
+					int q=ob.insertDepositor(cn.getText(),Integer.parseInt(acc.getText()));
+					
+					if(p==1&&q==1)
+						JOptionPane.showMessageDialog(null, "Insertion Successful"); 
+					else 
+						JOptionPane.showMessageDialog(null, "Error in Insertion"); 	
+				}catch(Exception ex) {}
+				
+			}
+		});
+		frmAdminPanel.getContentPane().setLayout(null);
+		frmAdminPanel.getContentPane().add(btnNewButton);
+		
+		JButton btnBack = new JButton("Back");
+		btnBack.setBounds(39, 323, 89, 23);
+		btnBack.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frmAdminPanel.setVisible(false);
+				new AdminResponse();
+			}
+		});
+		frmAdminPanel.getContentPane().add(btnBack);
+		
+		JLabel lblNewLabel = new JLabel("Customer Name");
+		lblNewLabel.setBounds(52, 135, 133, 14);
+		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		frmAdminPanel.getContentPane().add(lblNewLabel);
+		
+		JLabel lblAccountNumber = new JLabel("Account Number");
+		lblAccountNumber.setBounds(52, 180, 133, 14);
+		lblAccountNumber.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		frmAdminPanel.getContentPane().add(lblAccountNumber);
+		
+		JLabel lblBranchName = new JLabel("Branch Name");
+		lblBranchName.setBounds(52, 222, 114, 14);
+		lblBranchName.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		frmAdminPanel.getContentPane().add(lblBranchName);
+		
+		JLabel lblOpeningBalance = new JLabel("Opening Balance");
+		lblOpeningBalance.setBounds(52, 265, 114, 14);
+		lblOpeningBalance.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		frmAdminPanel.getContentPane().add(lblOpeningBalance);
+		
+		cn = new JTextField();
+		cn.setBounds(209, 133, 133, 20);
+		frmAdminPanel.getContentPane().add(cn);
+		cn.setColumns(10);
+		
+		acc = new JTextField();
+		acc.setBounds(209, 180, 133, 20);
+		acc.setColumns(10);
+		frmAdminPanel.getContentPane().add(acc);
+		
+		bn = new JTextField();
+		bn.setBounds(209, 220, 133, 20);
+		bn.setColumns(10);
+		frmAdminPanel.getContentPane().add(bn);
+		
+		balance = new JTextField();
+		balance.setBounds(209, 263, 133, 20);
+		balance.setColumns(10);
+		frmAdminPanel.getContentPane().add(balance);
+		
+		JLabel lblNewLabel_1 = new JLabel("WELCOME TO ADMIN \r\n\t\t\t\t\t");
+		lblNewLabel_1.setForeground(new Color(153, 102, 255));
+		lblNewLabel_1.setFont(new Font("Vineta BT", Font.PLAIN, 20));
+		lblNewLabel_1.setBounds(22, 29, 396, 59);
+		frmAdminPanel.getContentPane().add(lblNewLabel_1);
+		
+		JButton btnCheck = new JButton("check");
+		btnCheck.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frmAdminPanel.setVisible(false);
+				new AllAccount();
+
+			}
+		});
+		btnCheck.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		btnCheck.setBounds(317, 324, 89, 23);
+		frmAdminPanel.getContentPane().add(btnCheck);
+		
+		JLabel lblNewLabel_2 = new JLabel("");
+		lblNewLabel_2.setIcon(new ImageIcon("G:\\pics\\c3.jpg"));
+		lblNewLabel_2.setBounds(0, 0, 456, 393);
+		frmAdminPanel.getContentPane().add(lblNewLabel_2);
+		frmAdminPanel.setVisible(true);
+	}
+}

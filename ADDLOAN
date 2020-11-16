@@ -1,0 +1,140 @@
+package MAINPACK;
+
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
+import java.awt.Font;
+import javax.swing.JTextField;
+import javax.swing.JButton;
+import javax.swing.ImageIcon;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.awt.Color;
+
+public class AddLoan {
+
+	private JFrame frame;
+	private JTextField tf1;
+	private JTextField tf2;
+	private JTextField tf3;
+	private JTextField tf4;
+
+	/**
+	 * Launch the application.
+	 */
+	
+
+	/**
+	 * Create the application.
+	 */
+	public AddLoan() {
+		initialize();
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		frame = new JFrame();
+		frame.setBounds(100, 100, 574, 437);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(null);
+		
+		JLabel lblNewLabel = new JLabel("LOAN DETAILS");
+		lblNewLabel.setForeground(new Color(255, 182, 193));
+		lblNewLabel.setFont(new Font("Vineta BT", Font.PLAIN, 20));
+		lblNewLabel.setBounds(78, 21, 282, 52);
+		frame.getContentPane().add(lblNewLabel);
+		
+		JLabel lblNewLabel_1 = new JLabel("LOAN_NO");
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblNewLabel_1.setBounds(58, 118, 105, 25);
+		frame.getContentPane().add(lblNewLabel_1);
+		
+		tf1 = new JTextField();
+		tf1.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		tf1.setBounds(188, 118, 172, 24);
+		frame.getContentPane().add(tf1);
+		tf1.setColumns(10);
+		
+		JLabel lblNewLabel_1_1 = new JLabel("AMOUNT");
+		lblNewLabel_1_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblNewLabel_1_1.setBounds(58, 171, 105, 25);
+		frame.getContentPane().add(lblNewLabel_1_1);
+		
+		JLabel lblNewLabel_1_2 = new JLabel("CUST_NAME");
+		lblNewLabel_1_2.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblNewLabel_1_2.setBounds(58, 218, 105, 25);
+		frame.getContentPane().add(lblNewLabel_1_2);
+		
+		tf2 = new JTextField();
+		tf2.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		tf2.setColumns(10);
+		tf2.setBounds(188, 171, 172, 24);
+		frame.getContentPane().add(tf2);
+		
+		tf3 = new JTextField();
+		tf3.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		tf3.setColumns(10);
+		tf3.setBounds(188, 218, 172, 24);
+		frame.getContentPane().add(tf3);
+		
+		JLabel lblNewLabel_1_2_1 = new JLabel("BR_NAME");
+		lblNewLabel_1_2_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblNewLabel_1_2_1.setBounds(58, 267, 105, 25);
+		frame.getContentPane().add(lblNewLabel_1_2_1);
+		
+		tf4 = new JTextField();
+		tf4.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		tf4.setColumns(10);
+		tf4.setBounds(188, 268, 172, 24);
+		frame.getContentPane().add(tf4);
+		
+		JButton btnNewButton = new JButton("SUBMIT");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					int ln;
+					int am;
+					String cn,br;
+					ln=Integer.parseInt(tf1.getText());
+					am=Integer.parseInt(tf2.getText());
+					cn=tf3.getText();
+					br=tf4.getText();
+					DbInitialize ob=new DbInitialize();
+					ob.useDB();
+					int n=ob.insertloan(ln,am,cn,br);
+					if(n==1)
+						JOptionPane.showMessageDialog(null, "loan added sucesfully!!");
+					else
+						JOptionPane.showMessageDialog(null, "not added");
+				}
+				catch(Exception e4) {}
+			}
+		});
+		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		btnNewButton.setBounds(347, 340, 97, 31);
+		frame.getContentPane().add(btnNewButton);
+		
+		JButton btnBack = new JButton("BACK");
+		btnBack.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.setVisible(false);
+				new AdminResponse();
+			}
+		});
+		btnBack.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		btnBack.setBounds(54, 340, 97, 31);
+		frame.getContentPane().add(btnBack);
+		
+		JLabel lblNewLabel_2 = new JLabel("");
+		lblNewLabel_2.setIcon(new ImageIcon("G:\\pics\\e4.jpg"));
+		lblNewLabel_2.setBounds(0, 0, 560, 400);
+		frame.getContentPane().add(lblNewLabel_2);
+		frame.setVisible(true);
+	}
+
+}
